@@ -10,6 +10,7 @@ const pool    = require('./db');
 
 app.use(express.json())
 
+
 // signup
 app.post("/signup",async(req,res)=>{
     try{
@@ -22,6 +23,7 @@ app.post("/signup",async(req,res)=>{
         console.error(err.message)
     }
 });
+
 
 //login in
 app.post("/login",async(req,res)=>{
@@ -38,7 +40,6 @@ app.post("/login",async(req,res)=>{
         console.error(err.message)
     }
 });
-
 
 
 // creating a new todo
@@ -63,8 +64,8 @@ app.get("/todos",authenticateToken, async(req,res)=>{
     }
 });
 
-// getting a single todo
 
+// getting a single todo
 app.get("/todo/:id", authenticateToken,async(req,res)=>{
     const {id} = req.params;
     try{
@@ -78,7 +79,6 @@ app.get("/todo/:id", authenticateToken,async(req,res)=>{
 
 
 // updating a todo
-
 app.put("/todo/:id",authenticateToken, async(req,res)=>{
     const {id} = req.params;
     const {description} = req.body;
@@ -90,8 +90,8 @@ app.put("/todo/:id",authenticateToken, async(req,res)=>{
     }
 });
 
-// deleting a todo
 
+// deleting a todo
 app.delete("/todo/:id",authenticateToken, async(req,res)=>{
     const {id} = req.params;
     try{
@@ -101,6 +101,7 @@ app.delete("/todo/:id",authenticateToken, async(req,res)=>{
         console.error(err.message)
     }
 });
+
 
 // a verification middleware
 function authenticateToken(req,res,next){
